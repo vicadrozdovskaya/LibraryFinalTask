@@ -24,8 +24,8 @@ public class LibraryCardDaoImpl implements LibraryCardDao {
 
 	private static final String SELECT_LIBCARD_BYID = "SELECT * FROM library_card WHERE id_card = ?";
 	private static final String SELECT_ALL_LIBCARDS = "SELECT * FROM library_card";
-	private static final String INSERT_LIBCARD_BYID = "INSERT INTO ibrary_card (date_start,date_end,id_book,id_employee)VALUES(?,?,?,?)";
-	private static final String DELETE_LIBCARD_BYID = "DELETE FROM ibrary_card WHERE id_card = ?";
+	private static final String INSERT_LIBCARD_BYID = "INSERT INTO library_card (date_start,date_end,id_book,id_employee)VALUES(?,?,?,?)";
+	private static final String DELETE_LIBCARD_BYID = "DELETE FROM library_card WHERE id_card = ?";
 	private static final String UPDATE_LIBCARD_BYID = "UPDATE ibrary_card SET date_start = ? , date_end = ? , id_book = ? , id_employee = ? WHERE id_card = ?";
 
 	@Override

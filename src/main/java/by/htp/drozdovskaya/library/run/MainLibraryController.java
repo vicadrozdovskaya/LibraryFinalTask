@@ -5,6 +5,7 @@ import by.htp.drozdovskaya.library.menu.impl.AuthorMenuImpl;
 import by.htp.drozdovskaya.library.menu.impl.AuthorizationMenu;
 import by.htp.drozdovskaya.library.menu.impl.BookMenuImpl;
 import by.htp.drozdovskaya.library.menu.impl.EmployeeMenuImpl;
+import by.htp.drozdovskaya.library.menu.impl.LibraryCardMenuImpl;
 import by.htp.drozdovskaya.library.menu.impl.MainMenu;
 import by.htp.drozdovskaya.library.menu.impl.UserMenuImpl;
 
@@ -43,6 +44,8 @@ public class MainLibraryController {
 
 				break;
 			case 4:
+				IMenu lMenu = new LibraryCardMenuImpl();
+				lMenu.menu();
 
 				mMenu.continueMenu();
 				break;
