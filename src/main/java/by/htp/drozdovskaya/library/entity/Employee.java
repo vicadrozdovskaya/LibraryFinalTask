@@ -7,16 +7,18 @@ public class Employee {
 	private String surname;
 	private String phone;
 	private String department;
+	private User user;
 
 	public Employee() {
 	}
 
-	public Employee(int idEmployee, String name, String surname, String phone, String department) {
+	public Employee(int idEmployee, String name, String surname, String phone, String department, User user) {
 		this.idEmployee = idEmployee;
 		this.name = name;
 		this.surname = surname;
 		this.phone = phone;
 		this.department = department;
+		this.user = user;
 	}
 
 	public int getIdEmployee() {
@@ -59,6 +61,14 @@ public class Employee {
 		this.department = department;
 	}
 
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -68,6 +78,7 @@ public class Employee {
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + ((phone == null) ? 0 : phone.hashCode());
 		result = prime * result + ((surname == null) ? 0 : surname.hashCode());
+		result = prime * result + ((user == null) ? 0 : user.hashCode());
 		return result;
 	}
 
@@ -102,13 +113,18 @@ public class Employee {
 				return false;
 		} else if (!surname.equals(other.surname))
 			return false;
+		if (user == null) {
+			if (other.user != null)
+				return false;
+		} else if (!user.equals(other.user))
+			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Employee: id=" + idEmployee + ", fio=" + name + " " + surname + ", department=" + department + ", phone="
-				+ phone;
+		return "Employee: id=" + idEmployee + ", fio=" + name + " " + surname + ", department=" + department
+				+ ", phone=" + phone + ", " + user;
 	}
 
 }
