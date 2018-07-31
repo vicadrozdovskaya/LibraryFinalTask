@@ -9,8 +9,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import by.htp.drozdovskaya.library.dao.interfaces.AuthorDao;
-import by.htp.drozdovskaya.library.dao.interfaces.BookDao;
+import by.htp.drozdovskaya.library.dao.AuthorDao;
+import by.htp.drozdovskaya.library.dao.BookDao;
 import by.htp.drozdovskaya.library.entity.Author;
 import by.htp.drozdovskaya.library.entity.Book;
 

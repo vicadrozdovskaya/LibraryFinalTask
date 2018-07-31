@@ -13,7 +13,7 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 
-import by.htp.drozdovskaya.library.dao.interfaces.AuthorDao;
+import by.htp.drozdovskaya.library.dao.AuthorDao;
 import by.htp.drozdovskaya.library.entity.Author;
 
 

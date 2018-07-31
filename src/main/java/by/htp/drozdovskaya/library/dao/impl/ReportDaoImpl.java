@@ -12,9 +12,9 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 
-import by.htp.drozdovskaya.library.dao.interfaces.BookDao;
-import by.htp.drozdovskaya.library.dao.interfaces.EmployeeDao;
-import by.htp.drozdovskaya.library.dao.interfaces.ReportDao;
+import by.htp.drozdovskaya.library.dao.BookDao;
+import by.htp.drozdovskaya.library.dao.EmployeeDao;
+import by.htp.drozdovskaya.library.dao.ReportDao;
 import by.htp.drozdovskaya.library.entity.Book;
 import by.htp.drozdovskaya.library.entity.Employee;
 import by.htp.drozdovskaya.library.entity.LibraryCard;

@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import by.htp.drozdovskaya.library.dao.interfaces.UserDao;
+import by.htp.drozdovskaya.library.dao.UserDao;
 import by.htp.drozdovskaya.library.entity.User;
 
 public class UserDaoImpl implements UserDao{

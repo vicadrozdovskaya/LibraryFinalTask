@@ -13,9 +13,9 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 
-import by.htp.drozdovskaya.library.dao.interfaces.BookDao;
-import by.htp.drozdovskaya.library.dao.interfaces.EmployeeDao;
-import by.htp.drozdovskaya.library.dao.interfaces.LibraryCardDao;
+import by.htp.drozdovskaya.library.dao.BookDao;
+import by.htp.drozdovskaya.library.dao.EmployeeDao;
+import by.htp.drozdovskaya.library.dao.LibraryCardDao;
 import by.htp.drozdovskaya.library.entity.Book;
 import by.htp.drozdovskaya.library.entity.Employee;
 import by.htp.drozdovskaya.library.entity.LibraryCard;
@@ -24,7 +24,7 @@ public class LibraryCardDaoImpl implements LibraryCardDao {
 
 	private static final String SELECT_LIBCARD_BYID = "SELECT * FROM library_card WHERE id_card = ?";
 	private static final String SELECT_ALL_LIBCARDS = "SELECT * FROM library_card";
-	private static final String INSERT_LIBCARD_BYID = "INSERT INTO library_card (date_start,date_end,id_book,id_employee)VALUES(?,?,?,?)";
+	private static final String INSERT_LIBCARD_BYID = "INSERT INTO library_card (date_start,date_end,days_overdue,isReturned,id_book,id_employee)VALUES(?,?,?,?,?,?)";
 	private static final String DELETE_LIBCARD_BYID = "DELETE FROM library_card WHERE id_card = ?";
 	private static final String UPDATE_LIBCARD_BYID = "UPDATE ibrary_card SET date_start = ? , date_end = ? , id_book = ? , id_employee = ? WHERE id_card = ?";
 
@@ -71,9 +71,11 @@ public class LibraryCardDaoImpl implements LibraryCardDao {
 			PreparedStatement ps = conn.prepareStatement(UPDATE_LIBCARD_BYID);
 			ps.setDate(1, new Date(lCard.getDateStart().getTimeInMillis()));
 			ps.setDate(2, new Date(lCard.getDateEnd().getTimeInMillis()));
-			ps.setInt(3, lCard.getBook().getIdBook());
-			ps.setInt(4, lCard.getEmployee().getIdEmployee());
-			ps.setInt(5, lCard.getIdCard());
+			ps.setInt(3, lCard.getDaysOverdue());
+			ps.setBoolean(4, lCard.isReturned());
+			ps.setInt(5, lCard.getBook().getIdBook());
+			ps.setInt(6, lCard.getEmployee().getIdEmployee());
+			ps.setInt(7, lCard.getIdCard());
 			System.out.println(ps);
 			if (ps.executeUpdate() == 1) {
 				return true;

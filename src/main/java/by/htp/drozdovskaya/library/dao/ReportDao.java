@@ -1,4 +1,4 @@
-package by.htp.drozdovskaya.library.dao.interfaces;
+package by.htp.drozdovskaya.library.dao;
 
 import java.util.List;
 

@@ -10,8 +10,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import by.htp.drozdovskaya.library.dao.interfaces.EmployeeDao;
-import by.htp.drozdovskaya.library.dao.interfaces.UserDao;
+import by.htp.drozdovskaya.library.dao.EmployeeDao;
+import by.htp.drozdovskaya.library.dao.UserDao;
 import by.htp.drozdovskaya.library.entity.Employee;
 
 public class EmployeeDaoImpl implements EmployeeDao {
