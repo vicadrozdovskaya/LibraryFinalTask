@@ -3,8 +3,8 @@ package by.htp.drozdovskaya.library.menu.impl;
 import java.util.List;
 
 import by.htp.drozdovskaya.library.controller.creator.LibraryCardControllerCreator;
+import by.htp.drozdovskaya.library.dao.ReportDao;
 import by.htp.drozdovskaya.library.dao.impl.ReportDaoImpl;
-import by.htp.drozdovskaya.library.dao.interfaces.ReportDao;
 import by.htp.drozdovskaya.library.entity.LibraryCard;
 import by.htp.drozdovskaya.library.run.Read;
 
