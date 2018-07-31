@@ -7,8 +7,11 @@ import java.util.GregorianCalendar;
 public class LibraryCard {
 
 	private int idCard;
+	private String numberCard;
 	private Calendar dateStart;
 	private Calendar dateEnd;
+	private int daysOverdue;
+	private boolean isReturned;
 	private Book book;
 	private Employee employee;
 
@@ -17,10 +20,16 @@ public class LibraryCard {
 		this.dateEnd = new GregorianCalendar();
 	}
 
-	public LibraryCard(int idCard, Calendar dateStart, Calendar dateEnd, Book book, Employee employee) {
+	
+
+	public LibraryCard(int idCard, String numberCard, Calendar dateStart, Calendar dateEnd, int daysOverdue,
+			boolean isReturned, Book book, Employee employee) {
 		this.idCard = idCard;
+		this.numberCard = numberCard;
 		this.dateStart = dateStart;
 		this.dateEnd = dateEnd;
+		this.daysOverdue = daysOverdue;
+		this.isReturned = isReturned;
 		this.book = book;
 		this.employee = employee;
 	}
@@ -31,6 +40,14 @@ public class LibraryCard {
 
 	public void setIdCard(int idCard) {
 		this.idCard = idCard;
+	}
+
+	public String getNumberCard() {
+		return numberCard;
+	}
+
+	public void setNumberCard(String numberCard) {
+		this.numberCard = numberCard;
 	}
 
 	public Calendar getDateStart() {
@@ -47,6 +64,23 @@ public class LibraryCard {
 
 	public void setDateEnd(Calendar dateEnd) {
 		this.dateEnd = dateEnd;
+	}
+	
+
+	public int getDaysOverdue() {
+		return daysOverdue;
+	}
+
+	public void setDaysOverdue(int daysOverdue) {
+		this.daysOverdue = daysOverdue;
+	}
+
+	public boolean isReturned() {
+		return isReturned;
+	}
+
+	public void setReturned(boolean isReturned) {
+		this.isReturned = isReturned;
 	}
 
 	public Book getBook() {
@@ -72,8 +106,11 @@ public class LibraryCard {
 		result = prime * result + ((book == null) ? 0 : book.hashCode());
 		result = prime * result + ((dateEnd == null) ? 0 : dateEnd.hashCode());
 		result = prime * result + ((dateStart == null) ? 0 : dateStart.hashCode());
+		result = prime * result + daysOverdue;
 		result = prime * result + ((employee == null) ? 0 : employee.hashCode());
 		result = prime * result + idCard;
+		result = prime * result + (isReturned ? 1231 : 1237);
+		result = prime * result + ((numberCard == null) ? 0 : numberCard.hashCode());
 		return result;
 	}
 
@@ -101,6 +138,8 @@ public class LibraryCard {
 				return false;
 		} else if (!dateStart.equals(other.dateStart))
 			return false;
+		if (daysOverdue != other.daysOverdue)
+			return false;
 		if (employee == null) {
 			if (other.employee != null)
 				return false;
@@ -108,14 +147,24 @@ public class LibraryCard {
 			return false;
 		if (idCard != other.idCard)
 			return false;
+		if (isReturned != other.isReturned)
+			return false;
+		if (numberCard == null) {
+			if (other.numberCard != null)
+				return false;
+		} else if (!numberCard.equals(other.numberCard))
+			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
 		SimpleDateFormat formatForDateNow = new SimpleDateFormat("E dd.MM.yyyy");
-		return "LibraryCard idCard=" + idCard + ", start Date=" + formatForDateNow.format(dateStart.getTime())
-				+ ", end Date=" + formatForDateNow.format(dateEnd.getTime()) 
+		String str;
+		if (isReturned) str = "да"; else str = "нет";
+		return "LibraryCard number Card=" + numberCard + ", start Date=" + formatForDateNow.format(dateStart.getTime())
+				+ ", end Date=" + formatForDateNow.format(dateEnd.getTime()) + ", days overdue=" + daysOverdue
+				+ ", returned=" + str
 				+ ",\nbook=" + book + ",\nemployee=" + employee;
 	}
 
