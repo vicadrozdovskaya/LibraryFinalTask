@@ -1,7 +1,7 @@
 package by.htp.drozdovskaya.library.controller.impl;
 
 import by.htp.drozdovskaya.library.controller.ILibraryController;
-import by.htp.drozdovskaya.library.dao.interfaces.IDao;
+import by.htp.drozdovskaya.library.dao.IDao;
 import by.htp.drozdovskaya.library.dao.creator.EmployeeDaoCreator;
 import by.htp.drozdovskaya.library.dao.creator.UserDaoCreator;
 import by.htp.drozdovskaya.library.entity.Employee;

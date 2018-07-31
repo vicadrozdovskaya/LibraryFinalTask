@@ -4,7 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import by.htp.drozdovskaya.library.controller.ILibraryController;
-import by.htp.drozdovskaya.library.dao.interfaces.IDao;
+import by.htp.drozdovskaya.library.dao.IDao;
 import by.htp.drozdovskaya.library.dao.creator.BookDaoCreator;
 import by.htp.drozdovskaya.library.dao.creator.EmployeeDaoCreator;
 import by.htp.drozdovskaya.library.dao.creator.LibraryCardDaoCreator;
@@ -51,15 +51,26 @@ public class LibraryCardControllerImpl implements ILibraryController {
 		}
 		System.out.println("Выберите сотрудника: введите его ID");
 		int id_employee = read.readNumber();
-		libraryCard.setBook(bookDao.get(id_book));
+		libraryCard.setDaysOverdue(0);
+		libraryCard.setReturned(false);
+		Book book = bookDao.get(id_book);
+		if (book.getQuantity() > 0) {
+		libraryCard.setBook(book);
 		libraryCard.setEmployee(employeeDao.get(id_employee));
 		SimpleDateFormat formatForDateNow = new SimpleDateFormat("E dd.MM.yyyy");
 		if (libraryCardDao.insert(libraryCard)) {
+			book.setQuantity(book.getQuantity()-1);
+			bookDao.update(book);
 			System.out.println(libraryCard.getEmployee().getName() + " взял(а) книгу " + libraryCard.getBook().getTitle()
 					+ " до " + formatForDateNow.format(libraryCard.getDateEnd().getTime()));
+			
 			return true;
-		} else {
+		}else {
 			System.out.println("Произошла ошибка при добавлении, попрубуйте снова");
+			return false;
+		}
+		} else {
+			System.out.println("Все " + book.getTitle() + " на руках");
 			return false;
 		}
 
