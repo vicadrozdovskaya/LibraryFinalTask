@@ -4,7 +4,7 @@ import java.util.List;
 
 import by.htp.drozdovskaya.library.entity.Author;
 
-public interface AuthorDao extends IDao<Author> {
+public interface IAuthorDao extends IDao<Author> {
 
 	Author get(int id);
 

@@ -6,7 +6,7 @@ import java.util.List;
 
 import by.htp.drozdovskaya.library.entity.User;
 
-public interface UserDao extends IDao<User> {
+public interface IUserDao extends IDao<User> {
 
 	User get(int id);
 
@@ -19,4 +19,6 @@ public interface UserDao extends IDao<User> {
 	List<User> getAll();
 	
 	User getUser(ResultSet rs) throws SQLException;
+	
+	User getUser(String login);
 }

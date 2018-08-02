@@ -1,7 +1,8 @@
-package by.htp.drozdovskaya.library.dao.impl;
+package by.htp.drozdovskaya.library.dao.mysql.impl;
+
+import static by.htp.drozdovskaya.library.dao.mysql.util.MySqlPropertyManager.*;
 
 import java.sql.Connection;
-import static by.htp.drozdovskaya.library.dao.util.MySqlPropertyManager.*;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,18 +10,19 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import by.htp.drozdovskaya.library.dao.AuthorDao;
-import by.htp.drozdovskaya.library.dao.BookDao;
+import by.htp.drozdovskaya.library.dao.IAuthorDao;
+import by.htp.drozdovskaya.library.dao.IBookDao;
 import by.htp.drozdovskaya.library.entity.Author;
 import by.htp.drozdovskaya.library.entity.Book;
 
-public class BookDaoImpl implements BookDao {
+public class BookDaoImpl implements IBookDao {
 
 	private static final String SELECT_BOOK_BYID = "SELECT * FROM book WHERE id_book = ?";
 	private static final String SELECT_ALL_BOOK = "SELECT * FROM book";
 	private static final String INSERT_BOOK_BYID = "INSERT INTO book (title, quantity,id_author)VALUES(?,?,?)";
 	private static final String DELETE_BOOK_BYID = "DELETE FROM book WHERE id_book = ?";
 	private static final String UPDATE_BOOK_BYID = "UPDATE book SET title = ? , quantity = ?, id_author = ? WHERE id_book = ?";
+	private static final String SELECT_BOOKS_BYEMPLOYEE = "SELECT * FROM book join library_card on library_card.id_book = book.id_book WHERE id_employee = ?	AND isReturned = 0";
 
 	@Override
 	public Book get(int id) {
@@ -106,15 +108,35 @@ public class BookDaoImpl implements BookDao {
 		return false;
 	}
 
-	private Book buildBook(ResultSet rs) throws SQLException {
+	public Book buildBook(ResultSet rs) throws SQLException {
 		Book book = new Book();
 		book.setIdBook(rs.getInt("id_book"));
 		book.setTitle(rs.getString("title"));
 		book.setQuantity(rs.getInt("quantity"));
-		AuthorDao dao = new AuthorDaoImpl();
+		IAuthorDao dao = new AuthorDaoImpl();
 		Author author = dao.get(rs.getInt("id_author"));
 		book.setAuthor(author);
 		return book;
 	}
+
+	@Override
+	public List<Book> findNotReturnBooksByEmployee(int id) {
+
+		List<Book> listBook = new ArrayList<>();
+		try (Connection conn = DriverManager.getConnection(getUrl(), getProperties())) {
+			PreparedStatement ps = conn.prepareStatement(SELECT_BOOKS_BYEMPLOYEE);
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				listBook.add(buildBook(rs));
+			}
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		}
+
+		return listBook;
+	}
+
 
 }

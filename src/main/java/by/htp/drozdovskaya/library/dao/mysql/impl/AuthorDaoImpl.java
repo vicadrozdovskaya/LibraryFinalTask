@@ -1,6 +1,6 @@
-package by.htp.drozdovskaya.library.dao.impl;
+package by.htp.drozdovskaya.library.dao.mysql.impl;
 
-import static by.htp.drozdovskaya.library.dao.util.MySqlPropertyManager.*;
+import static by.htp.drozdovskaya.library.dao.mysql.util.MySqlPropertyManager.*;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -13,12 +13,12 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 
-import by.htp.drozdovskaya.library.dao.AuthorDao;
+import by.htp.drozdovskaya.library.dao.IAuthorDao;
 import by.htp.drozdovskaya.library.entity.Author;
 
 
 
-public class AuthorDaoImpl implements AuthorDao {
+public class AuthorDaoImpl implements IAuthorDao {
 	
 	private static final String SELECT_AUTHOR_BYID = "SELECT * FROM author WHERE id_author = ?";
 	private static final String SELECT_ALL_AUTHORS = "SELECT * FROM author";

@@ -1,6 +1,6 @@
-package by.htp.drozdovskaya.library.dao.impl;
+package by.htp.drozdovskaya.library.dao.mysql.impl;
 
-import static by.htp.drozdovskaya.library.dao.util.MySqlPropertyManager.*;
+import static by.htp.drozdovskaya.library.dao.mysql.util.MySqlPropertyManager.*;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -10,11 +10,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import by.htp.drozdovskaya.library.dao.EmployeeDao;
-import by.htp.drozdovskaya.library.dao.UserDao;
+import by.htp.drozdovskaya.library.dao.IEmployeeDao;
+import by.htp.drozdovskaya.library.dao.IUserDao;
 import by.htp.drozdovskaya.library.entity.Employee;
 
-public class EmployeeDaoImpl implements EmployeeDao {
+public class EmployeeDaoImpl implements IEmployeeDao {
 
 	private static final String SELECT_EMPLOYEE_BYID = "SELECT * FROM employee WHERE id_employee = ?";
 	private static final String SELECT_ALL_EMPLOYEE = "SELECT * FROM employee";
@@ -115,8 +115,8 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		employee.setSurname(rs.getString("surname"));
 		employee.setPhone(rs.getString("phone"));
 		employee.setDepartment(rs.getString("department"));
-		UserDao userDao = new UserDaoImpl();
-		employee.setUser(userDao.get(rs.getInt("id_employee")));
+		IUserDao iUserDao = new UserDaoImpl();
+		employee.setUser(iUserDao.get(rs.getInt("id_employee")));
 		return employee;
 	}
 

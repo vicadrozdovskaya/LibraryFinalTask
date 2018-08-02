@@ -1,4 +1,4 @@
-package by.htp.drozdovskaya.library.dao.util;
+package by.htp.drozdovskaya.library.dao.mysql.util;
 
 import java.util.Properties;
 import java.util.ResourceBundle;

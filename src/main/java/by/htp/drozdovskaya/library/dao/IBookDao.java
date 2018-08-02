@@ -4,7 +4,7 @@ import java.util.List;
 
 import by.htp.drozdovskaya.library.entity.Book;
 
-public interface BookDao extends IDao<Book> {
+public interface IBookDao extends IDao<Book> {
 
 	Book get(int id);
 
@@ -15,5 +15,7 @@ public interface BookDao extends IDao<Book> {
 	boolean delete(Book book);
 
 	boolean update(Book book);
+	
+	List<Book> findNotReturnBooksByEmployee(int id);
 
 }
