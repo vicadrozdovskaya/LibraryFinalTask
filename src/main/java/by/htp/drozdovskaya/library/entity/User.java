@@ -8,6 +8,7 @@ public class User {
 	private int role;
 
 	public User() {
+		this.idUser = -1;
 	}
 
 	public User(int idUser, String login, String password, int role) {
