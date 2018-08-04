@@ -2,20 +2,17 @@ package by.htp.drozdovskaya.library.menu.impl;
 
 import java.util.Scanner;
 
-import by.htp.drozdovskaya.library.controller.ILibraryController;
+import by.htp.drozdovskaya.library.entity.User;
 import by.htp.drozdovskaya.library.menu.IMenu;
 
-public class MainMenu implements IMenu {
+public abstract class MainMenu implements IMenu {	
 
-	public static final String MENU = "1 - работа с данными о книгах в библиотеке " + "\n"
-			+ "2 - работа с данными об авторах в библиотеке " + "\n"
-			+ "3 - работа с данными о сотрудниках в библиотеке  " + "\n"
-			+ "4 - работа с данными о читательских билетах в библиотеке " + "\n"
-			+ "5 - отчет о сотрудниках читавших книги за месяц " + "\n" 
-			+ "6 - работа с пользователями библиотеки " + "\n"
-			+ "7 - Выход из программы \n";
+	private User user;
 
-	protected ILibraryController libraryController;
+	public MainMenu() {}
+	public MainMenu(User user) {
+		this.user = user;
+	}
 
 	public void continueMenu() {
 		Scanner sc = new Scanner(System.in);
@@ -44,9 +41,10 @@ public class MainMenu implements IMenu {
 
 	}
 
-	@Override
-	public void menu() {
-		System.out.println(MENU);
+	public User getUser() {
+		return user;
 	}
+
+	
 
 }
