@@ -1,7 +1,5 @@
 package by.htp.drozdovskaya.library.data.factory;
 
-import java.util.Map;
-
 import by.htp.drozdovskaya.library.dao.IAuthorDao;
 import by.htp.drozdovskaya.library.dao.IBookDao;
 import by.htp.drozdovskaya.library.dao.IEmployeeDao;
@@ -14,9 +12,6 @@ import by.htp.drozdovskaya.library.dao.mysql.impl.EmployeeDaoImpl;
 import by.htp.drozdovskaya.library.dao.mysql.impl.LibraryCardDaoImpl;
 import by.htp.drozdovskaya.library.dao.mysql.impl.ReportDaoImpl;
 import by.htp.drozdovskaya.library.dao.mysql.impl.UserDaoImpl;
-import by.htp.drozdovskaya.library.entity.Book;
-import by.htp.drozdovskaya.library.entity.Employee;
-import by.htp.drozdovskaya.library.entity.LibraryCard;
 
 public class MySQLFactory extends AbstractFactory {
 
