@@ -131,11 +131,6 @@ public class UserDaoImpl implements IUserDao {
 	}
 
 	@Override
-	public User getUser(ResultSet rs) throws SQLException {
-		return buildUser(rs);
-	}
-
-	@Override
 	public User getUser(String login) {
 		User user = null;
 		try (Connection conn = DriverManager.getConnection(getUrl(), getProperties())) {

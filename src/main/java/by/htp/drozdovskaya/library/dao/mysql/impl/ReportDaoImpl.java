@@ -8,11 +8,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import by.htp.drozdovskaya.library.dao.IBookDao;
@@ -26,7 +23,7 @@ import by.htp.drozdovskaya.library.entity.LibraryCard;
 
 public class ReportDaoImpl implements IReportDao {
 
-	private static final String SELECT_EMPLOYEE_READ_BOOK_BYMONTH = "SELECT EMPLOYEE.*, COUNT(LIBRARY_CARD.ID_EMPLOYEE) AS READED_BOOKS FROM LIBRARY_CARD JOIN EMPLOYEE ON LIBRARY_CARD.ID_EMPLOYEE = EMPLOYEE.ID_EMPLOYEE WHERE LIBRARY_CARD.isReturned > 0 AND LIBRARY_CARD.id_employee IN 		\r\n" + 
+	private static final String SELECT_EMPLOYEE_READ_BOOK_BYMONTH = "SELECT EMPLOYEE.id_employee, COUNT(LIBRARY_CARD.ID_EMPLOYEE) AS READED_BOOKS FROM LIBRARY_CARD JOIN EMPLOYEE ON LIBRARY_CARD.ID_EMPLOYEE = EMPLOYEE.ID_EMPLOYEE WHERE LIBRARY_CARD.isReturned > 0 AND LIBRARY_CARD.id_employee IN 		\r\n" + 
 			"		(\r\n" + 
 			"			SELECT distinct employee.id_employee FROM employee join library_card\r\n" + 
 			"			On employee.id_employee=library_card.id_employee\r\n" + 
@@ -72,7 +69,8 @@ public class ReportDaoImpl implements IReportDao {
 	private Employee buildEmployee(ResultSet rs) throws SQLException {
 		IEmployeeDao emplDao = new EmployeeDaoImpl();
 		Employee employee = new Employee();
-		employee = emplDao.getEmployee(rs);// get(rs.getInt("id_employee"));
+		employee = emplDao.
+				get(rs.getInt("id_employee"));
 		return employee;
 	}
 

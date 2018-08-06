@@ -8,7 +8,6 @@ public class Book {
 	private Author author;
 	
 	public Book() {
-	
 	}
 
 	public Book(int idBook, String title, int quantity, Author author) {
@@ -92,6 +91,8 @@ public class Book {
 	public String toString() {
 		return "\nBook: id=" + idBook + ", title=" + title + ", quantity=" + quantity + ", " + author;
 	}
+
+
 	
 	
 	

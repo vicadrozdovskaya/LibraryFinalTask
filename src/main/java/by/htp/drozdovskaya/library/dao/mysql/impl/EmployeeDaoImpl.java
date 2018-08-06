@@ -120,9 +120,5 @@ public class EmployeeDaoImpl implements IEmployeeDao {
 		return employee;
 	}
 
-	@Override
-	public Employee getEmployee(ResultSet rs) throws SQLException {
-		return buildEmployee(rs);
-	}
 
 }

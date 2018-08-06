@@ -6,37 +6,43 @@ import by.htp.drozdovskaya.library.dao.IEmployeeDao;
 import by.htp.drozdovskaya.library.dao.ILibraryCardDao;
 import by.htp.drozdovskaya.library.dao.IReportDao;
 import by.htp.drozdovskaya.library.dao.IUserDao;
+import by.htp.drozdovskaya.library.dao.collections.AuthorCollectionImpl;
+import by.htp.drozdovskaya.library.dao.collections.BookCollectionImpl;
+import by.htp.drozdovskaya.library.dao.collections.EmployeeCollectionImpl;
+import by.htp.drozdovskaya.library.dao.collections.LibraryCardCollectionImpl;
+import by.htp.drozdovskaya.library.dao.collections.ReportCollectionImpl;
+import by.htp.drozdovskaya.library.dao.collections.UserCollectionImpl;
 
 public class CollectionFactory extends AbstractFactory {
 
 	@Override
 	public IEmployeeDao createEmployeeDao() {
-		return null;
+		return new EmployeeCollectionImpl();
 	}
 
 	@Override
 	public IBookDao createBookDao() {
-		return null;
+		return new BookCollectionImpl();
 	}
 
 	@Override
 	public IAuthorDao createAuthorDao() {
-		return null;
+		return new AuthorCollectionImpl();
 	}
 
 	@Override
 	public IUserDao createUserDao() {
-		return null;
+		return new UserCollectionImpl();
 	}
 
 	@Override
 	public ILibraryCardDao createLibraryCardDao() {
-		return null;
+		return new LibraryCardCollectionImpl();
 	}
 
 	@Override
 	public IReportDao createReportDao() {
-		return null;
+		return new ReportCollectionImpl();
 	}
 
 }
