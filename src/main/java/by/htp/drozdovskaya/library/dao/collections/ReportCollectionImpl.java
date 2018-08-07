@@ -20,30 +20,27 @@ public class ReportCollectionImpl implements IReportDao {
 	@Override
 	public Map<Book, Integer> popularBooks() {
 		IBookDao iBookDao = new BookCollectionImpl();
-		ILibraryCardDao iLibCardDao = new LibraryCardCollectionImpl();		
-		
+		ILibraryCardDao iLibCardDao = new LibraryCardCollectionImpl();
+
 		List<LibraryCard> listLibCards = new ArrayList<>();
 		listLibCards.addAll(iLibCardDao.getAll());
-	
-		
-		Map<Book,Integer> books = new HashMap<>();
+
+		Map<Book, Integer> books = new HashMap<>();
 		int counter = 0;
-		for(LibraryCard bookInCard: listLibCards) {
-			if(bookInCard.isReturned()) {
+		for (LibraryCard bookInCard : listLibCards) {
+			if (bookInCard.isReturned()) {
 				Book book = iBookDao.get(bookInCard.getBook().getIdBook());
-				if(!books.containsKey(book)) {
+				if (!books.containsKey(book)) {
 					counter = 1;
-				}
-				else{
+				} else {
 					counter = books.get(book);
-					counter++;					
+					counter++;
 				}
 				books.put(book, counter);
 			}
 		}
-			
-		
-		
+		books.entrySet().stream().sorted(Map.Entry.<Book, Integer>comparingByValue().reversed());
+
 		return books;
 	}
 
@@ -57,30 +54,28 @@ public class ReportCollectionImpl implements IReportDao {
 	@Override
 	public Map<Employee, Integer> employeeReadBooksByMonth(int min, int max) {
 		IEmployeeDao iEmployeeDao = new EmployeeCollectionImpl();
-		ILibraryCardDao iLibCardDao = new LibraryCardCollectionImpl();		
-		
+		ILibraryCardDao iLibCardDao = new LibraryCardCollectionImpl();
+
 		List<LibraryCard> listLibCards = new ArrayList<>();
 		listLibCards.addAll(iLibCardDao.getAll());
-	
-		
-		Map<Employee,Integer> employeeReadBooks = new HashMap<>();
+
+		Map<Employee, Integer> employeeReadBooks = new HashMap<>();
 		int counter = 0;
-		for(LibraryCard bookInCard: listLibCards) {
-			if(bookInCard.isReturned()) {
+		for (LibraryCard bookInCard : listLibCards) {
+			if (bookInCard.isReturned()) {
 				Employee employe = iEmployeeDao.get(bookInCard.getEmployee().getIdEmployee());
-				if(!employeeReadBooks.containsKey(employe)) {
+				if (!employeeReadBooks.containsKey(employe)) {
 					counter = 1;
-				}
-				else{
+				} else {
 					counter = employeeReadBooks.get(employe);
-					counter++;					
+					counter++;
 				}
 				employeeReadBooks.put(employe, counter);
 			}
 		}
 		Set<Employee> keySet = employeeReadBooks.keySet();
-		for(Employee employe: keySet) {
-			if(employeeReadBooks.get(employe) < 2 || employeeReadBooks.get(employe) > 8) {
+		for (Employee employe : keySet) {
+			if (employeeReadBooks.get(employe) < 2 || employeeReadBooks.get(employe) > 8) {
 				employeeReadBooks.remove(employe);
 			}
 		}

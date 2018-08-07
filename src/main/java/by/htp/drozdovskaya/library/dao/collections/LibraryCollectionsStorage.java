@@ -4,7 +4,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collections;
 import java.util.GregorianCalendar;
 import java.util.List;
 
@@ -17,11 +16,11 @@ import by.htp.drozdovskaya.library.entity.User;
 public class LibraryCollectionsStorage {
 
 	private static LibraryCollectionsStorage INSTANCE;
-	private static int NEXT_BOOK_ID_VALUE;
-	private static int NEXT_AUTHOR_ID_VALUE;
-	private static int NEXT_USER_ID_VALUE;
-	private static int NEXT_EMPLOYEE_ID_VALUE;
-	private static int NEXT_LIBRARYCARD_ID_VALUE;
+	private int nextBookIdValue;
+	private int nextAuthorIdValue;
+	private int nextUserIdValue;
+	private int nextEmployeeIdValue;
+	private int nextLibraryCardIdValue;
 
 	private List<Book> books;
 	private List<Author> authors;
@@ -37,11 +36,11 @@ public class LibraryCollectionsStorage {
 		this.libraryCards = new ArrayList<>();
 		initLibraryCollections();
 
-		this.NEXT_BOOK_ID_VALUE = getMaxIdForBook();
-		this.NEXT_AUTHOR_ID_VALUE = getMaxIdForAuthor();
-		this.NEXT_EMPLOYEE_ID_VALUE = getMaxIdForEmployee();
-		this.NEXT_LIBRARYCARD_ID_VALUE = getMaxIdForLibraryCard();
-		this.NEXT_USER_ID_VALUE = getMaxIdForUser();
+		this.nextBookIdValue = getMaxIdForBook();
+		this.nextAuthorIdValue = getMaxIdForAuthor();
+		this.nextEmployeeIdValue = getMaxIdForEmployee();
+		this.nextLibraryCardIdValue = getMaxIdForLibraryCard();
+		this.nextUserIdValue = getMaxIdForUser();
 	}
 
 	private static LibraryCollectionsStorage getInstance() {
@@ -61,8 +60,8 @@ public class LibraryCollectionsStorage {
 	}
 
 	public static int getNextBookId() {
-		NEXT_BOOK_ID_VALUE++;
-		return NEXT_BOOK_ID_VALUE;
+		getInstance().nextBookIdValue++;
+		return getInstance().nextBookIdValue;
 	}
 
 	public int getMaxIdForBook() {
@@ -73,10 +72,12 @@ public class LibraryCollectionsStorage {
 		}
 		return id;
 	}
+
 	public static int getNextAuthorId() {
-		NEXT_AUTHOR_ID_VALUE++;
-		return NEXT_AUTHOR_ID_VALUE;
+		getInstance().nextAuthorIdValue++;
+		return getInstance().nextAuthorIdValue;
 	}
+
 	public int getMaxIdForAuthor() {
 		int id = 0;
 		for (Author author : this.authors) {
@@ -85,10 +86,12 @@ public class LibraryCollectionsStorage {
 		}
 		return id;
 	}
+
 	public static int getNextUserId() {
-		NEXT_USER_ID_VALUE++;
-		return NEXT_USER_ID_VALUE;
+		getInstance().nextUserIdValue++;
+		return getInstance().nextUserIdValue;
 	}
+
 	public int getMaxIdForUser() {
 		int id = 0;
 		for (User user : this.users) {
@@ -97,10 +100,12 @@ public class LibraryCollectionsStorage {
 		}
 		return id;
 	}
+
 	public static int getNextEmployeeId() {
-		NEXT_EMPLOYEE_ID_VALUE++;
-		return NEXT_EMPLOYEE_ID_VALUE;
+		getInstance().nextEmployeeIdValue++;
+		return getInstance().nextEmployeeIdValue;
 	}
+
 	public int getMaxIdForEmployee() {
 		int id = 0;
 		for (Employee employee : this.employee) {
@@ -109,11 +114,12 @@ public class LibraryCollectionsStorage {
 		}
 		return id;
 	}
-	
+
 	public static int getNextLibraryCardId() {
-		NEXT_LIBRARYCARD_ID_VALUE++;
-		return NEXT_LIBRARYCARD_ID_VALUE;
+		getInstance().nextLibraryCardIdValue++;
+		return getInstance().nextLibraryCardIdValue;
 	}
+
 	public int getMaxIdForLibraryCard() {
 		int id = 0;
 		for (LibraryCard libraryCard : this.libraryCards) {
@@ -220,8 +226,10 @@ public class LibraryCollectionsStorage {
 					this.employee.get(1)));
 			this.libraryCards.add(new LibraryCard(5, "DB0002", dateStart1, dateEnd3, 0, false, this.books.get(6),
 					this.employee.get(1)));
-			this.libraryCards.add(new LibraryCard(5, "DB0002", dateStart2, dateEnd3, 0, false, this.books.get(4),
+			this.libraryCards.add(new LibraryCard(6, "DB0002", dateStart2, dateEnd3, 0, false, this.books.get(4),
 					this.employee.get(1)));
+			this.libraryCards.add(new LibraryCard(7, "AD0004", dateStart2, dateEnd4, 0, true, this.books.get(3),
+					this.employee.get(3)));
 		} catch (ParseException e) {
 
 			e.printStackTrace();
